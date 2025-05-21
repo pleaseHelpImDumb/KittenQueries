@@ -1,3 +1,6 @@
+import {API_KEY} from './config.js'
+console.log(API_KEY); // Should now show your API key
+
 //Random Cat Image
 const body = document.querySelector("body");
 const randomCatImage = document.createElement("img");
@@ -12,7 +15,7 @@ refreshButton.addEventListener("click", refreshImage);
 
 body.appendChild(randomCatImage);
 
-fetch('https://api.thecatapi.com/v1/images/search')
+fetch(API_KEY)
     .then(res => {
         if(!res.ok){
             throw new Error ("Bad request");
@@ -29,7 +32,7 @@ fetch('https://api.thecatapi.com/v1/images/search')
 
 
 async function refreshImage(){
-    const imgData = await fetch('https://api.thecatapi.com/v1/images/search');
+    const imgData = await fetch(API_KEY);
     const data = await imgData.json();
     randomCatImage.src = data[0].url;
 }
